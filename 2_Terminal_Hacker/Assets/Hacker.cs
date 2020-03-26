@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Hacker : MonoBehaviour {
 
+    //Game Configuration Data
+    string[] level1Passwords = { "book", "shelf", "table", "cabin", "font"};
+    string[] level2Passwords = { "policeman", "handcuffs", "vehicles", "arrested", "uniforms"};
+
     //Game State
     int level;
     string password;
@@ -37,24 +41,34 @@ public class Hacker : MonoBehaviour {
     }
 
     void RunMainMenu(string input) {
-        if (input == "1") {
-            level = 1;
-            password = "book";
+        bool isValidLevel = (input == "1" || input == "2");
+        if(isValidLevel) {
+            level = int.Parse(input);
             StartTheGame();
-        } else if (input == "2") {
-            level = 2;
-            password = "handcuffs";
-            StartTheGame();
+        } else {
+            Terminal.WriteLine("Please choose a valid level");
         }
     }
     private void StartTheGame() {
         currentScreen = Screen.Password;
-        Terminal.WriteLine("You've chosen level " + level);
-        Terminal.WriteLine("Please, enter you password");
+        Terminal.ClearScreen();
+        switch(level) {
+            case 1:
+                password = level1Passwords[0];
+                break;
+            case 2:
+                password = level2Passwords[0];
+                break;
+            default:
+                Debug.LogError("Invalid Level Number"); //Shouldn't reach this ever
+                break;
+        }
+        Terminal.WriteLine("Please, enter you password:");
     }
 
     void CheckPassword(string input) {
        if(input == password) {
+            Terminal.WriteLine("Right Password!");
             WinScreen();
        } else {
             Terminal.WriteLine("Wrong Password");
@@ -63,6 +77,6 @@ public class Hacker : MonoBehaviour {
 
     private void WinScreen() {
         currentScreen = Screen.Win;
-        Terminal.WriteLine("Right Password!");
+        Terminal.ClearScreen();
     }
 }
