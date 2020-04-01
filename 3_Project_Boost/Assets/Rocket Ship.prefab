@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c72a635c689e44f428201bedaf9d59e9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,13 +105,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975682053228352887}
   serializedVersion: 2
-  m_Mass: 0.105
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 1
+  m_Drag: 0.75
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 56
   m_CollisionDetection: 0
 --- !u!82 &1873086509067887450
 AudioSource:
@@ -221,6 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ebdbbdf664d25644b9f29938f6cc04e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rcsRotation: 120
+  rcsThrust: 30
 --- !u!1 &1061783833354897396
 GameObject:
   m_ObjectHideFlags: 0
