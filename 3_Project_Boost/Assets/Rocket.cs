@@ -6,6 +6,10 @@ public class Rocket : MonoBehaviour
     //rcs = reaction control system
     [SerializeField] float rcsRotation = 120f;
     [SerializeField] float rcsThrust = 30f;
+    //Audio
+    [SerializeField] AudioClip mainEngine;
+    [SerializeField] AudioClip death;
+    [SerializeField] AudioClip success;
     
     //Player states
     enum State { Alive, Dying, Transcending};
@@ -13,7 +17,7 @@ public class Rocket : MonoBehaviour
 
     Rigidbody rigidBody;
     AudioSource audioSource;
-    //Vector3 thrustForce = new Vector3(0, 2, 0);
+
     // Start is called before the first frame update
     void Start() {
         rigidBody = GetComponent<Rigidbody>();
@@ -23,25 +27,27 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update() {
         if (state == State.Alive) {
-            Thrust();
-            Rotate();
-        } else {
-            audioSource.Stop();
+            HandleThrustInput();
+            HandleRotationInput();
         }
     }
 
-    private void Thrust() {
+    private void HandleThrustInput() {
         if (Input.GetKey(KeyCode.Space)) {
-            rigidBody.AddRelativeForce(Vector3.up * rcsThrust);
-            if (!audioSource.isPlaying) {
-                audioSource.Play();
-            }
+            ApplyThrust();
         } else {
             audioSource.Stop();
         }
     }
 
-    private void Rotate() {
+    private void ApplyThrust() {
+        rigidBody.AddRelativeForce(Vector3.up * rcsThrust);
+        if (!audioSource.isPlaying) {
+            audioSource.PlayOneShot(mainEngine);
+        }
+    }
+
+    private void HandleRotationInput() {
         FreezeRotation(true); //Takes manual control of rotation
 
         float frameRotation = rcsRotation * Time.deltaTime;
@@ -71,25 +77,39 @@ public class Rocket : MonoBehaviour
                 print("Fuel Replenished.");
                 break;
             case "Finish":
-                state = State.Transcending;
-                Invoke("LoadNextLevel", 1f);
-                print("You finished the level!");
+                HandleLevelFinish();
                 break;
             default:
-                print("Wasted.");
-                state = State.Dying;
-                Invoke("LoadFirstLevel", 1f);
+                HandleDeath();
                 break;
         }
+    }
+
+    private void HandleLevelFinish() {
+        print("You finished the level!");
+        audioSource.Stop();
+        audioSource.PlayOneShot(success);
+        state = State.Transcending;
+        Invoke("LoadNextLevel", 2.312f);
+    }
+
+    private void LoadNextLevel() {
+        SceneManager.LoadScene(1);
+    }
+
+    private void HandleDeath() {
+        print("Dead.");
+        audioSource.Stop();
+        audioSource.PlayOneShot(death);
+        state = State.Dying;
+        Invoke("LoadFirstLevel", 2.448f);
     }
 
     private void LoadFirstLevel() {
         SceneManager.LoadScene(0);
     }
 
-    private void LoadNextLevel() {
-        SceneManager.LoadScene(1);
-    }
+    
 
     private void ShowWinScreen() {
         print("You Won!");
