@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Rocket : MonoBehaviour
 {
     //rcs = reaction control system
     [SerializeField] float rcsRotation = 120f;
     [SerializeField] float rcsThrust = 30f;
+    
+    //Player states
+    enum State { Alive, Dying, Transcending};
+    State state = State.Alive;
 
     Rigidbody rigidBody;
     AudioSource audioSource;
@@ -20,8 +22,12 @@ public class Rocket : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        Thrust();
-        Rotate();
+        if (state == State.Alive) {
+            Thrust();
+            Rotate();
+        } else {
+            audioSource.Stop();
+        }
     }
 
     private void Thrust() {
@@ -49,11 +55,13 @@ public class Rocket : MonoBehaviour
         FreezeRotation(false); //Resumes physical control of rotation
     }
 
-    private void FreezeRotation(Boolean toFreeze) {
+    private void FreezeRotation(bool toFreeze) {
         rigidBody.freezeRotation = toFreeze;
     }
 
     void OnCollisionEnter(Collision collision) {
+        if(state != State.Alive) { return; } // ignore all collisions
+
         switch(collision.gameObject.tag) {
             case "Friendly":
                 print("Ok!");
@@ -63,11 +71,27 @@ public class Rocket : MonoBehaviour
                 print("Fuel Replenished.");
                 break;
             case "Finish":
-                print("You Win!");
+                state = State.Transcending;
+                Invoke("LoadNextLevel", 1f);
+                print("You finished the level!");
                 break;
             default:
                 print("Wasted.");
+                state = State.Dying;
+                Invoke("LoadFirstLevel", 1f);
                 break;
         }
+    }
+
+    private void LoadFirstLevel() {
+        SceneManager.LoadScene(0);
+    }
+
+    private void LoadNextLevel() {
+        SceneManager.LoadScene(1);
+    }
+
+    private void ShowWinScreen() {
+        print("You Won!");
     }
 }
