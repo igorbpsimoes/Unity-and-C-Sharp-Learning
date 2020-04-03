@@ -6,6 +6,7 @@ public class Rocket : MonoBehaviour
     //rcs = reaction control system
     [SerializeField] float rcsRotation = 120f;
     [SerializeField] float rcsThrust = 1000f;
+    [SerializeField] float levelLoadDelay = 2.45f;
     //Audio
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip death;
@@ -97,7 +98,7 @@ public class Rocket : MonoBehaviour
         rocketJet.Stop();
         finish.Play();
         state = State.Transcending;
-        Invoke("LoadNextLevel", 2.312f);
+        Invoke("LoadNextLevel", levelLoadDelay);
     }
 
     private void LoadNextLevel() {
@@ -111,14 +112,12 @@ public class Rocket : MonoBehaviour
         rocketJet.Stop();
         explosion.Play();
         state = State.Dying;
-        Invoke("LoadFirstLevel", 2.448f);
+        Invoke("LoadFirstLevel", levelLoadDelay);
     }
 
     private void LoadFirstLevel() {
         SceneManager.LoadScene(0);
     }
-
-    
 
     private void ShowWinScreen() {
         print("You Won!");
