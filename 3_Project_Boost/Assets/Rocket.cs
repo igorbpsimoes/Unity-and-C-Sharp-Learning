@@ -5,7 +5,7 @@ public class Rocket : MonoBehaviour
 {
     //rcs = reaction control system
     [SerializeField] float rcsRotation = 120f;
-    [SerializeField] float rcsThrust = 30f;
+    [SerializeField] float rcsThrust = 1000f;
     //Audio
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip death;
@@ -45,7 +45,7 @@ public class Rocket : MonoBehaviour
     }
 
     private void ApplyThrust() {
-        rigidBody.AddRelativeForce(Vector3.up * rcsThrust);
+        rigidBody.AddRelativeForce(Vector3.up * rcsThrust * Time.deltaTime);
         if (!audioSource.isPlaying) {
             audioSource.PlayOneShot(mainEngine);
         }
