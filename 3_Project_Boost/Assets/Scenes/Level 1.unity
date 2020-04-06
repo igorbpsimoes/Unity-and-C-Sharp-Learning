@@ -706,13 +706,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Landing Pad
       objectReference: {fileID: 0}
-    - target: {fileID: 7174445289853834508, guid: 34a0d4223538bfd4c953b2f3cb2ecc3e,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7174445289853834508, guid: 34a0d4223538bfd4c953b2f3cb2ecc3e, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34a0d4223538bfd4c953b2f3cb2ecc3e, type: 3}
 --- !u!1001 &6388492824402602330
 PrefabInstance:
@@ -844,11 +838,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5310240008268242863, guid: fef08f7fced2c1d489ecc18dc2de2648,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7888351703760894053, guid: fef08f7fced2c1d489ecc18dc2de2648,
         type: 3}
