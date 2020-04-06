@@ -726,11 +726,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket Ship
       objectReference: {fileID: 0}
-    - target: {fileID: 1501513856487479530, guid: c876b9ec38bff5542a1ed12e0986bc2e,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1516827170339259853, guid: c876b9ec38bff5542a1ed12e0986bc2e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -784,6 +779,11 @@ PrefabInstance:
     - target: {fileID: 1516827170339259853, guid: c876b9ec38bff5542a1ed12e0986bc2e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388492824402602333, guid: c876b9ec38bff5542a1ed12e0986bc2e,
+        type: 3}
+      propertyPath: m_AngularDrag
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

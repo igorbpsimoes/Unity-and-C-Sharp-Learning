@@ -16,15 +16,15 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem explosion;
     [SerializeField] ParticleSystem finish;
 
+    //Components
     Rigidbody rigidBody;
     AudioSource audioSource;
-    
-    //Player states
-    enum State { Alive, Dying, Transcending };
-    State state = State.Alive;
 
+    //Control variables
+    bool isTranscending = false;
     bool collisionDisabled = false;
     int sceneIndex;
+
     // Start is called before the first frame update
     void Start() {
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -34,7 +34,7 @@ public class Rocket : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (state == State.Alive) {
+        if (!isTranscending) {
             HandleThrustInput();
             HandleRotationInput();
         }
@@ -55,8 +55,7 @@ public class Rocket : MonoBehaviour
         if (Input.GetKey(KeyCode.Space)) {
             ApplyThrust();
         } else {
-            audioSource.Stop();
-            rocketJet.Stop();
+            StopApplyingThrust();
         }
     }
 
@@ -68,26 +67,24 @@ public class Rocket : MonoBehaviour
         rocketJet.Play();
     }
 
+    private void StopApplyingThrust() {
+        audioSource.Stop();
+        rocketJet.Stop();
+    }
     private void HandleRotationInput() {
-        FreezeRotation(true); //Takes manual control of rotation
+        rigidBody.angularVelocity = Vector3.zero; //Remove rotation due to physics
 
-        float frameRotation = rcsRotation * Time.deltaTime;
+        float rotationThisFrame = rcsRotation * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.A)) {
-            transform.Rotate(Vector3.forward * frameRotation);
+            transform.Rotate(Vector3.forward * rotationThisFrame);
         } else if (Input.GetKey(KeyCode.D)) {
-            transform.Rotate(Vector3.back * frameRotation);
+            transform.Rotate(Vector3.back * rotationThisFrame);
         }
-
-        FreezeRotation(false); //Resumes physical control of rotation
-    }
-
-    private void FreezeRotation(bool toFreeze) {
-        rigidBody.freezeRotation = toFreeze;
     }
 
     void OnCollisionEnter(Collision collision) {
-        if(state != State.Alive || collisionDisabled) { return; } // ignore all collisions
+        if(isTranscending || collisionDisabled) { return; } // ignore all collisions
 
         switch(collision.gameObject.tag) {
             case "Friendly":
@@ -107,13 +104,15 @@ public class Rocket : MonoBehaviour
     }
 
     private void HandleLevelFinish() {
-        print("You finished the level!");
-        audioSource.Stop();
-        audioSource.PlayOneShot(success);
-        rocketJet.Stop();
-        finish.Play();
-        state = State.Transcending;
+        StopApplyingThrust();
+        ApplySuccessEffects();
+        isTranscending = true;
         Invoke("LoadNextLevel", levelLoadDelay);
+    }
+
+    private void ApplySuccessEffects() {
+        audioSource.PlayOneShot(success);
+        finish.Play();
     }
 
     private void LoadNextLevel() {
@@ -122,21 +121,19 @@ public class Rocket : MonoBehaviour
     }
 
     private void HandleDeath() {
-        print("Dead.");
-        audioSource.Stop();
-        audioSource.PlayOneShot(death);
-        rocketJet.Stop();
-        explosion.Play();
-        state = State.Dying;
+        StopApplyingThrust();
+        ApplyDeathEffects();
+        isTranscending = true;
         Invoke("LoadFirstLevel", levelLoadDelay);
+    }
+
+    private void ApplyDeathEffects() {
+        audioSource.PlayOneShot(death);
+        explosion.Play();
     }
 
     private void LoadFirstLevel() {
         sceneIndex = 0;
         SceneManager.LoadScene(sceneIndex);
-    }
-
-    private void ShowWinScreen() {
-        print("You Won!");
     }
 }
