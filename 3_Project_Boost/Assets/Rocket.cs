@@ -18,15 +18,16 @@ public class Rocket : MonoBehaviour
 
     Rigidbody rigidBody;
     AudioSource audioSource;
-
+    
     //Player states
     enum State { Alive, Dying, Transcending };
     State state = State.Alive;
 
     bool collisionDisabled = false;
-
+    int sceneIndex;
     // Start is called before the first frame update
     void Start() {
+        sceneIndex = SceneManager.GetActiveScene().buildIndex;
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -116,7 +117,8 @@ public class Rocket : MonoBehaviour
     }
 
     private void LoadNextLevel() {
-        SceneManager.LoadScene(1);
+        ++sceneIndex;
+        SceneManager.LoadScene(sceneIndex%SceneManager.sceneCountInBuildSettings);
     }
 
     private void HandleDeath() {
@@ -130,7 +132,8 @@ public class Rocket : MonoBehaviour
     }
 
     private void LoadFirstLevel() {
-        SceneManager.LoadScene(0);
+        sceneIndex = 0;
+        SceneManager.LoadScene(sceneIndex);
     }
 
     private void ShowWinScreen() {
