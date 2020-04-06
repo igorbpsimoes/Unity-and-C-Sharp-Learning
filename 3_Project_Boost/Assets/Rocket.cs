@@ -15,12 +15,15 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem rocketJet;
     [SerializeField] ParticleSystem explosion;
     [SerializeField] ParticleSystem finish;
-    //Player states
-    enum State { Alive, Dying, Transcending};
-    State state = State.Alive;
 
     Rigidbody rigidBody;
     AudioSource audioSource;
+
+    //Player states
+    enum State { Alive, Dying, Transcending };
+    State state = State.Alive;
+
+    bool collisionDisabled = false;
 
     // Start is called before the first frame update
     void Start() {
@@ -33,6 +36,17 @@ public class Rocket : MonoBehaviour
         if (state == State.Alive) {
             HandleThrustInput();
             HandleRotationInput();
+        }
+        if (Debug.isDebugBuild) {
+            HandleDebugKeys();
+        }
+    }
+
+    private void HandleDebugKeys() {
+        if (Input.GetKeyDown(KeyCode.L)) {
+            LoadNextLevel();
+        } else if(Input.GetKeyDown(KeyCode.C)) {
+            collisionDisabled = !collisionDisabled;
         }
     }
 
@@ -72,7 +86,7 @@ public class Rocket : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision) {
-        if(state != State.Alive) { return; } // ignore all collisions
+        if(state != State.Alive || collisionDisabled) { return; } // ignore all collisions
 
         switch(collision.gameObject.tag) {
             case "Friendly":
