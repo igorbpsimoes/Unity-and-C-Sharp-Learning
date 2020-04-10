@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if(this.gameObject.scene.buildIndex == 0) {
+        if (SceneManager.GetActiveScene().buildIndex == 0) {
             if (Input.anyKeyDown) {
                 Invoke("LoadFirstLevel", 1f);
             }
