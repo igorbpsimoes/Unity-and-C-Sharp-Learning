@@ -7,18 +7,22 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Player : MonoBehaviour {
 
     //Speed factor
-    [Tooltip("In m/s")][SerializeField] float speed = 15f;
+    [Tooltip("In m/s")][SerializeField] float speed = 20f;
     //Screen limits
     [Tooltip("In m")][SerializeField] float xMax = 15f;
     [Tooltip("In m")] [SerializeField] float xMin = -15f;
     [Tooltip("In m")] [SerializeField] float yMax = 5f;
     [Tooltip("In m")] [SerializeField] float yMin = -10f;
 
-    float xThrow, xOffset, xRawPos, xClampedPos;
-    float yThrow, yOffset, yRawPos, yClampedPos;
+    //Rotation Order = Y > X > Z; Yaw > Pitch > Roll
+    //Rotation due to vertical translation
+    [SerializeField] float positionPitchFactor = -1f;
+    [SerializeField] float controlPitchFactor = -15f;
+    //Rotation due to horizontal translation
+    [SerializeField] float positionYawFactor = 1f;
+    [SerializeField] float controlRollFactor = -20f;
 
-    //Rotation Order = Y > X > Z
-
+    float xThrow, yThrow;
     // Start is called before the first frame update
     void Start() {
 
@@ -34,20 +38,28 @@ public class Player : MonoBehaviour {
         xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
         yThrow = CrossPlatformInputManager.GetAxis("Vertical");
         
-        xOffset = speed * xThrow * Time.deltaTime;
-        yOffset = speed * yThrow * Time.deltaTime;
+        float xOffset = speed * xThrow * Time.deltaTime;
+        float yOffset = speed * yThrow * Time.deltaTime;
         
-        xRawPos = transform.localPosition.x + xOffset;
-        yRawPos = transform.localPosition.y + yOffset;
+        float xRawPos = transform.localPosition.x + xOffset;
+        float yRawPos = transform.localPosition.y + yOffset;
         
         //Limits spaceship position to fit inside screen
-        xClampedPos = Mathf.Clamp(xRawPos, xMin, xMax);
-        yClampedPos = Mathf.Clamp(yRawPos, yMin, yMax);
+        float xClampedPos = Mathf.Clamp(xRawPos, xMin, xMax);
+        float yClampedPos = Mathf.Clamp(yRawPos, yMin, yMax);
 
         transform.localPosition = new Vector3(xClampedPos, yClampedPos, transform.localPosition.z);
     }
 
     private void ProcessRotation() {
-        throw new NotImplementedException();
+        float pitchDueToPosition = (transform.localPosition.y + 5) * positionPitchFactor;
+        float pitchDueToControlThrow = yThrow * controlPitchFactor;
+        float pitch = pitchDueToPosition + pitchDueToControlThrow;
+
+        float yaw = transform.localPosition.x * positionYawFactor;
+
+        float roll = xThrow * controlRollFactor;
+
+        transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
     }
 }

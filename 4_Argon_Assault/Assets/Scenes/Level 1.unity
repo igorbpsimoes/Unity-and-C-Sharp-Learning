@@ -388,6 +388,41 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2227352931990807673, guid: 5af203c13dce0fe44a687954cf123b39,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227352931990807673, guid: 5af203c13dce0fe44a687954cf123b39,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227352931990807673, guid: 5af203c13dce0fe44a687954cf123b39,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227352931990807673, guid: 5af203c13dce0fe44a687954cf123b39,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227352931990807673, guid: 5af203c13dce0fe44a687954cf123b39,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227352931990807673, guid: 5af203c13dce0fe44a687954cf123b39,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227352931990807673, guid: 5af203c13dce0fe44a687954cf123b39,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2835353530309403085, guid: 5af203c13dce0fe44a687954cf123b39,
         type: 3}
       propertyPath: xSpeedFactor
@@ -412,6 +447,26 @@ PrefabInstance:
         type: 3}
       propertyPath: yMax
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835353530309403085, guid: 5af203c13dce0fe44a687954cf123b39,
+        type: 3}
+      propertyPath: positionPitchFactor
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835353530309403085, guid: 5af203c13dce0fe44a687954cf123b39,
+        type: 3}
+      propertyPath: controlPitchFactor
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835353530309403085, guid: 5af203c13dce0fe44a687954cf123b39,
+        type: 3}
+      propertyPath: speed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835353530309403085, guid: 5af203c13dce0fe44a687954cf123b39,
+        type: 3}
+      propertyPath: controlRollFactor
+      value: -20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5af203c13dce0fe44a687954cf123b39, type: 3}
