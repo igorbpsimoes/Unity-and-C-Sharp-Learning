@@ -25,11 +25,24 @@ public class PlayerController: MonoBehaviour {
     [SerializeField] float controlRollFactor = -20f;
 
     float xThrow, yThrow;
+    bool isControlEnabled = true;
 
+    Rigidbody rigidbody;
+
+    void Start() {
+        rigidbody = GetComponent<Rigidbody>();
+    }
     // Update is called once per frame
     void Update() {
-        ProcessTranslation();
-        ProcessRotation();
+        if(isControlEnabled) {
+            ProcessTranslation();
+            ProcessRotation();
+        }
+    }
+
+    private void DisableControls() { //Called by string reference in CollisionHandler
+        isControlEnabled = false;
+        rigidbody.isKinematic = false;
     }
 
     private void ProcessTranslation() {
