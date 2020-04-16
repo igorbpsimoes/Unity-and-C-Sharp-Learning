@@ -8,10 +8,6 @@ public class CollisionHandler : MonoBehaviour {
     [Tooltip("In seconds")][SerializeField] float sceneLoadDelay = 1.5f;
     [Tooltip("FX prefab on player")][SerializeField] GameObject deathFX;
 
-    // Update is called once per frame
-    void Update() {
-        
-    }
     void OnTriggerEnter(Collider other) {
         StartDeathSequence();
         Invoke("ReloadScene", sceneLoadDelay);
