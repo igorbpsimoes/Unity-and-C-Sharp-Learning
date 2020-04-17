@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-    [Tooltip("Groups the FX instances for tidiness")][SerializeField] Transform hierarchyGrouper;
-    [SerializeField] GameObject deathFX;
+    [Tooltip("Groups the FX instances for tidiness")][SerializeField] Transform hierarchyGrouper = null;
+    [SerializeField] GameObject deathFX = null;
     [SerializeField] int scoreOnDeath = 10;
 
     ScoreBoard scoreboard;

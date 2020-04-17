@@ -28,17 +28,12 @@ public class PlayerController: MonoBehaviour {
     float xThrow, yThrow;
     bool isControlEnabled = true;
     
-    //Empty GameObject that groups all player guns
-    GameObject gunGrouper;
-    ParticleSystem[] guns;
-    Rigidbody rigidbody;
+    new Rigidbody rigidbody;
 
-    void Awake() {
-        gunGrouper = transform.GetChild(1).gameObject;
-    }
+    public delegate void ShootDelegate(bool isShooting);
+    public event ShootDelegate isShootingEvent;
 
     void Start() {
-        guns = gunGrouper.GetComponentsInChildren<ParticleSystem>();
         rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -86,17 +81,10 @@ public class PlayerController: MonoBehaviour {
     }
     
     private void ProcessFiring() {
-        if(CrossPlatformInputManager.GetButton("Fire")) {
-            SetGunActive(true);
+        if(CrossPlatformInputManager.GetButton("Shoot")) {
+            isShootingEvent?.Invoke(true);
         } else {
-            SetGunActive(false);
-        }
-    }
-
-    private void SetGunActive(bool isActive) {
-        foreach(ParticleSystem gun in guns) {
-            var emissionModule = gun.emission;
-            emissionModule.enabled = isActive;
+            isShootingEvent?.Invoke(false);
         }
     }
 }
