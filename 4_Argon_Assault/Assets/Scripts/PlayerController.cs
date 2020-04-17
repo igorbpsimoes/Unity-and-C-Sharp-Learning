@@ -9,34 +9,45 @@ public class PlayerController: MonoBehaviour {
     [Header("General")]
     //Speed factor
     [Tooltip("In m/s")][SerializeField] float controlSpeed = 20f;
-    //Screen limits
+
+    [Header("Screen Limits")]
     [Tooltip("In m")][SerializeField] float xMax = 15f;
     [Tooltip("In m")] [SerializeField] float xMin = -15f;
     [Tooltip("In m")] [SerializeField] float yMax = 5f;
     [Tooltip("In m")] [SerializeField] float yMin = -10f;
 
     //Rotations due to vertical and horizontal translation
-    [Header("Screen-position based")]
+    [Header("Screen-position Rotation")]
     [SerializeField] float positionPitchFactor = -1f;
     [SerializeField] float positionYawFactor = 1f;
 
-    [Header("Control-throw based")]
+    [Header("Control-throw Rotation")]
     [SerializeField] float controlPitchFactor = -15f;
     [SerializeField] float controlRollFactor = -20f;
 
     float xThrow, yThrow;
     bool isControlEnabled = true;
-
+    
+    //Empty GameObject that groups all player guns
+    GameObject gunGrouper;
+    ParticleSystem[] guns;
     Rigidbody rigidbody;
 
+    void Awake() {
+        gunGrouper = transform.GetChild(1).gameObject;
+    }
+
     void Start() {
+        guns = gunGrouper.GetComponentsInChildren<ParticleSystem>();
         rigidbody = GetComponent<Rigidbody>();
     }
+
     // Update is called once per frame
     void Update() {
         if(isControlEnabled) {
             ProcessTranslation();
             ProcessRotation();
+            ProcessFiring();
         }
     }
 
@@ -72,5 +83,20 @@ public class PlayerController: MonoBehaviour {
         float roll = xThrow * controlRollFactor;
 
         transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
+    }
+    
+    private void ProcessFiring() {
+        if(CrossPlatformInputManager.GetButton("Fire")) {
+            SetGunActive(true);
+        } else {
+            SetGunActive(false);
+        }
+    }
+
+    private void SetGunActive(bool isActive) {
+        foreach(ParticleSystem gun in guns) {
+            var emissionModule = gun.emission;
+            emissionModule.enabled = isActive;
+        }
     }
 }
