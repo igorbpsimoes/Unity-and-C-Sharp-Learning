@@ -11,25 +11,31 @@ public class Enemy : MonoBehaviour {
 
     ScoreBoard scoreboard;
 
-    void Awake() {
-
-    }
-
     void Start() {
-        //foreach(GameObject a in FindObjectsOfType<ParticleCollisionHandler>())
+        foreach(EnemyHitHandler collider in GetComponentsInChildren<EnemyHitHandler>()) {
+            collider.enemyHitEvent += OnEnemyHit;
+        }
         scoreboard = FindObjectOfType<ScoreBoard>();
     }
 
-    void TakeDamage() {
+    void OnEnemyHit() {
         --hitpoints;
         if(hitpoints < 1) {
-            scoreboard.ScoreHit(scoreOnDeath);
-
-            /*By passing the hierarchyGrouper as the parents transform parameter
-              we can instantiate as a child and colapse the empty gameobject that
-              groups all the deathFX instances on the Hierarchy*/
-            Instantiate(deathFX, transform.position, Quaternion.identity, hierarchyGrouper);
-            Destroy(gameObject);
+            OnEnemyDeath();
         }
+    }
+
+    void OnEnemyDeath() {
+        scoreboard.ScoreHit(scoreOnDeath);
+        
+        foreach (EnemyHitHandler collider in GetComponentsInChildren<EnemyHitHandler>()) {
+            collider.enemyHitEvent -= OnEnemyHit;
+        }
+        /*By passing the hierarchyGrouper as the parents transform parameter
+          we can instantiate as a child and colapse the empty gameobject that
+          groups all the deathFX instances on the Hierarchy*/
+        Instantiate(deathFX, transform.position, Quaternion.identity, hierarchyGrouper);
+        
+        Destroy(gameObject);
     }
 }
