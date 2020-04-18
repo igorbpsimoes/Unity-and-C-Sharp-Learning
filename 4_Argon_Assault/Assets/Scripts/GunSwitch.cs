@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shoot : MonoBehaviour {
-
+public class GunSwitch : MonoBehaviour {
+    
     ParticleSystem.EmissionModule emission;
 
     // Start is called before the first frame update
