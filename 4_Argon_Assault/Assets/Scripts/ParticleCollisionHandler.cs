@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class ParticleCollisionHandler : MonoBehaviour {
 
+    public delegate void EnemyParticleCollisionDelegate();
+    public event EnemyParticleCollisionDelegate enemyParticleCollisionEvent;
+
     void OnParticleCollision(GameObject other) {
-        transform.parent.gameObject.SendMessage("TakeDamage");
+        //Look Null-conditional operator
+        //enemyParticleCollisionEvent?.Invoke();
+        transform.parent.transform.parent.gameObject.SendMessage("TakeDamage");
     }
 }
