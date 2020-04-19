@@ -9,11 +9,10 @@ public class SceneLoader : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
     void Update() {
         if (SceneManager.GetActiveScene().buildIndex == 0) {
             if (Input.anyKeyDown) {
-                Invoke("LoadFirstLevel", 1f);
+                Invoke(nameof(LoadFirstLevel), 1f);
             }
         }
     }

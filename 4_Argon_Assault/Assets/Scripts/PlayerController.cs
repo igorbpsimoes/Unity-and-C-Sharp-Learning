@@ -37,7 +37,6 @@ public class PlayerController: MonoBehaviour {
         rigidbody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update() {
         if(isControlEnabled) {
             ProcessTranslation();
@@ -46,6 +45,7 @@ public class PlayerController: MonoBehaviour {
         }
     }
 
+    //TODO: reimplement with delegates
     private void DisableControls() { //Called by string reference in CollisionHandler
         isControlEnabled = false;
         rigidbody.isKinematic = false;

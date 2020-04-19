@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour {
         foreach(EnemyHitHandler collider in GetComponentsInChildren<EnemyHitHandler>()) {
             collider.enemyHitEvent += OnEnemyHit;
         }
+        /*Subscribe public method to delegate,
+          this way we won't instantiate the scoreboard or find it during runtime*/
         updateScore = FindObjectOfType<ScoreBoard>().ScoreHit;
     }
 

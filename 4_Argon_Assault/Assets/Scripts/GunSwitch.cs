@@ -6,7 +6,6 @@ public class GunSwitch : MonoBehaviour {
     
     ParticleSystem.EmissionModule emission;
 
-    // Start is called before the first frame update
     void Start() {
         emission = GetComponent<ParticleSystem>().emission;
         FindObjectOfType<PlayerController>().isShootingEvent += SetGunActive;
