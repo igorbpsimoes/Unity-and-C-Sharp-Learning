@@ -35,6 +35,7 @@ public class PlayerController: MonoBehaviour {
 
     void Start() {
         rigidbody = GetComponent<Rigidbody>();
+        FindObjectOfType<PlayerCollisionHandler>().playerDeathEvent += OnPlayerDeath;
     }
 
     void Update() {
@@ -45,8 +46,7 @@ public class PlayerController: MonoBehaviour {
         }
     }
 
-    //TODO: reimplement with delegates
-    private void DisableControls() { //Called by string reference in CollisionHandler
+    private void OnPlayerDeath() {
         isControlEnabled = false;
         rigidbody.isKinematic = false;
     }
