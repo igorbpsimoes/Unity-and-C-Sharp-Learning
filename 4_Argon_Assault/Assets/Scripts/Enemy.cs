@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-    [Tooltip("Groups the FX instances for tidiness")][SerializeField] Transform hierarchyGrouper = null;
+    [Tooltip("Empty GameObject which groups the FX instances for tidiness")] [SerializeField] Transform hierarchyGrouper = null;
     [SerializeField] GameObject deathFX = null;
-    [SerializeField] int scoreOnDeath = 10;
-    [Tooltip("How many hits an enemy can take")][SerializeField] int hitpoints = 10;
+    [Tooltip("How much the player earns when killing an enemy")][SerializeField] int scoreOnKill = 10;
+    [Tooltip("How many hits an enemy can take")] [SerializeField] int hitpoints = 10;
 
-    ScoreBoard scoreboard;
+    delegate void OnEnemyKillDelegate(int scoreOnEnemyKill);
+    OnEnemyKillDelegate updateScore;
 
     void Start() {
+        //Subscribe to collider delegates
         foreach(EnemyHitHandler collider in GetComponentsInChildren<EnemyHitHandler>()) {
             collider.enemyHitEvent += OnEnemyHit;
         }
-        scoreboard = FindObjectOfType<ScoreBoard>();
+        updateScore = FindObjectOfType<ScoreBoard>().ScoreHit;
     }
 
     void OnEnemyHit() {
@@ -26,8 +28,9 @@ public class Enemy : MonoBehaviour {
     }
 
     void OnEnemyDeath() {
-        scoreboard.ScoreHit(scoreOnDeath);
-        
+        updateScore(scoreOnKill);
+
+        //Unsubscribe from collider delegates
         foreach (EnemyHitHandler collider in GetComponentsInChildren<EnemyHitHandler>()) {
             collider.enemyHitEvent -= OnEnemyHit;
         }
@@ -35,7 +38,6 @@ public class Enemy : MonoBehaviour {
           we can instantiate as a child and colapse the empty gameobject that
           groups all the deathFX instances on the Hierarchy*/
         Instantiate(deathFX, transform.position, Quaternion.identity, hierarchyGrouper);
-        
         Destroy(gameObject);
     }
 }
