@@ -5156,7 +5156,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1490
+  m_Name: pb_Mesh-1488
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6611,7 +6611,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2700
+  m_Name: pb_Mesh-2718
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7686,7 +7686,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-10510
+  m_Name: pb_Mesh-2698
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11370,7 +11370,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2318
+  m_Name: pb_Mesh-2316
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12682,6 +12682,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1633084348}
+  - component: {fileID: 1633084349}
   m_Layer: 0
   m_Name: Waypoints
   m_TagString: Untagged
@@ -12724,6 +12725,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1633084349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633084347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 227ac7054b0023748bedcccc3e2c71fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1634036366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15756,12 +15769,12 @@ PrefabInstance:
     - target: {fileID: 941063552326036171, guid: 01c8c0a952a55114d90043e96f767832,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 941063552326036171, guid: 01c8c0a952a55114d90043e96f767832,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 63
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 941063552326036171, guid: 01c8c0a952a55114d90043e96f767832,
         type: 3}
@@ -16163,6 +16176,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977278708927648125, guid: 0b707480ad510a44baaffd178d632b3f,
+        type: 3}
+      propertyPath: speed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b707480ad510a44baaffd178d632b3f, type: 3}
