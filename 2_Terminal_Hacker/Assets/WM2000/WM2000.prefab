@@ -56,12 +56,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1205162521242328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -74,6 +75,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1353937523441630
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,12 +130,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1353937523441630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 138991e1d9d76cc41b0a352f3d80b23f, type: 3}
   m_Color: {r: 0, g: 1, b: 0.29655194, a: 1}
   m_RaycastTarget: 0
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -153,20 +156,21 @@ MonoBehaviour:
   m_Text: 'Hit Play or Ctrl+P to turn me on.
 
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque consequat
-    porta nunc porta laoreet. Nam tempor orci consequat ipsum volutpat, non tristique
-    neque viverra. Aenean sit amet sagittis lacus. Proin eu semper mi, ut tincidunt
-    dolor. Integer tortor felis, mollis vitae quam in, efficitur porta enim. Proin
-    sit amet commodo augue, accumsan mollis mi. Duis aliquam in diam sed tincidunt.
-    Aliquam ultrices eget ipsum at efficitur. Integer orci est, condimentum nec facilisis
-    ac, rutrum eu ex. Nullam sodales leo id bibendum dictum. Lorem ipsum dolor sit
-    amet, consectetur adipiscing elit. Pellentesque consequat porta nunc porta laoreet.
-    Nam tempor orci consequat ipsum volutpat, non tristique neque viverra. Aenean
-    sit amet sagittis lacus. Proin eu semper mi, ut tincidunt dolor. Integer tortor
-    felis, mollis vitae quam in, efficitur porta enim. Proin sit amet commodo augue,
-    accumsan mollis mi. Duis aliquam in diam sed tincidunt. Aliquam ultrices eget
-    ipsum at efficitur. Integer orci est, condimentum nec facilisis ac, rutrum eu
-    ex. Nullam sodales leo id bibendum dictum.'
+    Lorem ipsum dolor sit amet, consectetur
+    adipiscing elit. Pellentesque consequat porta nunc porta laoreet. Nam tempor
+    orci consequat ipsum volutpat, non tristique neque viverra. Aenean sit amet sagittis
+    lacus. Proin eu semper mi, ut tincidunt dolor. Integer tortor felis, mollis vitae
+    quam in, efficitur porta enim. Proin sit amet commodo augue, accumsan mollis
+    mi. Duis aliquam in diam sed tincidunt. Aliquam ultrices eget ipsum at efficitur.
+    Integer orci est, condimentum nec facilisis ac, rutrum eu ex. Nullam sodales
+    leo id bibendum dictum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Pellentesque consequat porta nunc porta laoreet. Nam tempor orci consequat ipsum
+    volutpat, non tristique neque viverra. Aenean sit amet sagittis lacus. Proin
+    eu semper mi, ut tincidunt dolor. Integer tortor felis, mollis vitae quam in,
+    efficitur porta enim. Proin sit amet commodo augue, accumsan mollis mi. Duis
+    aliquam in diam sed tincidunt. Aliquam ultrices eget ipsum at efficitur. Integer
+    orci est, condimentum nec facilisis ac, rutrum eu ex. Nullam sodales leo id bibendum
+    dictum.'
 --- !u!1 &1404923856698552
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,12 +405,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1783196620332798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -419,6 +424,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1865490045461082
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +495,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1865490045461082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
@@ -711,12 +717,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1934752254326382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -729,3 +736,4 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1

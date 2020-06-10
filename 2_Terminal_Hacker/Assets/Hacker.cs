@@ -85,7 +85,6 @@ public class Hacker : MonoBehaviour {
     void DisplayWinScreen() {
         currentScreen = Screen.Win;
         Terminal.ClearScreen();
-        Terminal.WriteLine(menuHint);
         ShowLevelReward();
         Terminal.WriteLine(menuHint);
     }
@@ -95,7 +94,7 @@ public class Hacker : MonoBehaviour {
             case 1:
                 Terminal.WriteLine("Luke's X-Wing is yours...");
                 Terminal.WriteLine(@"
---)-----------|____________|
+                    --)-----------|____________|
                                               ,'       ,'
                 -)------========            ,'  ____ ,'
                          `.    `.         ,'  ,'__ ,'
@@ -113,7 +112,8 @@ public class Hacker : MonoBehaviour {
                                              `.        `.
                                                `.________`.
                                --)-------------|___________|
-                ");
+"
+                );
                 break;
             case 2:
                 Terminal.WriteLine("Millenium Falcon is yours...");
