@@ -62,7 +62,7 @@ public class Rocket : MonoBehaviour
     private void ApplyThrust() {
         rigidBody.AddRelativeForce(Vector3.up * rcsThrust * Time.deltaTime);
         if (!audioSource.isPlaying) {
-            audioSource.PlayOneShot(mainEngine);
+            audioSource.PlayOneShot(mainEngine, 0.4f);
         }
         rocketJet.Play();
     }
@@ -111,7 +111,7 @@ public class Rocket : MonoBehaviour
     }
 
     private void ApplySuccessEffects() {
-        audioSource.PlayOneShot(success);
+        audioSource.PlayOneShot(success, 0.4f);
         finish.Play();
     }
 
@@ -128,7 +128,7 @@ public class Rocket : MonoBehaviour
     }
 
     private void ApplyDeathEffects() {
-        audioSource.PlayOneShot(death);
+        audioSource.PlayOneShot(death, 0.2f);
         explosion.Play();
     }
 
